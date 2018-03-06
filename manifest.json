@@ -1,0 +1,43 @@
+{
+	"manifest_version": 2,
+	"name": "Bootstrap To Material",
+	"version": "0.0.2",
+	"description": "This extension will turn any page made with Bootstrap 4 into one that uses Material Design",
+
+	"icons": {
+		"16": "images/icons/icon-16.png",
+		"32": "images/icons/icon-32.png",
+		"48": "images/icons/icon-48.png",
+		"64": "images/icons/icon-64.png",
+		"96": "images/icons/icon-96.png",
+		"128": "images/icons/icon-128.png",
+		"192": "images/icons/icon-192.png",
+		"256": "images/icons/icon-256.png",
+		"384": "images/icons/icon-384.png"
+	},
+
+	"browser_action": {
+		"default_icon": {
+			"16": "images/icons/icon-16.png",
+			"32": "images/icons/icon-32.png",
+			"48": "images/icons/icon-48.png",
+			"64": "images/icons/icon-64.png",
+			"96": "images/icons/icon-96.png",
+			"128": "images/icons/icon-128.png",
+			"192": "images/icons/icon-192.png",
+			"256": "images/icons/icon-256.png",
+			"384": "images/icons/icon-384.png"
+		},
+		"default_title": "Settings",
+		"default_popup": "settings.html"
+	},
+
+	"content_scripts": [
+		{
+			"matches": ["http://*/*", "https://*/*"],
+			"css": ["material/material-design-icons.css", "material/angular-material.min.css"],
+			"js": ["material/angular.min.js", "material/angular-animate.min.js", "material/angular-aria.min.js", "material/angular-messages.min.js", "material/angular-material.min.js", "js/inject.js"],
+			"run_at": "document_end"
+		}
+	]
+}
