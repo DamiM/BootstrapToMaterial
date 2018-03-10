@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>&NegativeVeryThinSpace;</title>
+        <title>Document</title>
 
-        <link rel="stylesheet" href="css/settings.css">
+        <link rel="stylesheet" href="css/popup.css">
 
         <script src="material/angular.min.js"></script>
         <script src="material/angular-animate.min.js"></script>
@@ -15,14 +15,17 @@
         <script src="material/angular-material.min.js"></script>
         <link rel="stylesheet" href="material/angular-material.min.css">
     </head>
-    <body ng-app="settings" ng-cloak>
+    <body ng-app="settings" ng-controller="settings" ng-cloak>
         <md-content>
-            <h2 class="md-display-3">Bootstrap To Material - Advanced</h2>
             <md-card>
-                <md-button>Click!</md-button>
+                <md-card-content>
+                    <md-checkbox id="option-extension-enabled" aria-label="Enable">Enable the extension</md-checkbox>
+                </md-card-content>
             </md-card>
+
+            <md-button id="open-advanced-settings" aria-label="Open Advanced Settings">Advanced</md-button>
         </md-content>
-        
-        <script src="js/settings.js"></script>
+
+        <script src="js/popup.js"></script>
     </body>
 </html>

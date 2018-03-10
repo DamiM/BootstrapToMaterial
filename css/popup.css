@@ -1,0 +1,12 @@
+@import url(main.css);
+
+body > md-content {
+    width: 600px !important;
+    height: 400px !important;
+}
+
+#open-advanced-settings {
+    position: fixed;
+    bottom: 4px;
+    right: 4px;
+}

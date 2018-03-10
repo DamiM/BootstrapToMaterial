@@ -1,0 +1,5 @@
+/* Supplementary stylesheet for styles completely unsupported by AngularJS Material */
+
+.md-block-button {
+	width: 100%;
+}

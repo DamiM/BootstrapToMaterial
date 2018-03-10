@@ -1,1 +1,6 @@
 @import url(../material/material-design-icons.css);
+
+* {
+    font-family: 'Roboto' !important;
+    font-size: 14px;
+}
