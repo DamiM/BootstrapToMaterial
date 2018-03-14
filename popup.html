@@ -1,31 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
 
-        <link rel="stylesheet" href="css/popup.css">
+		<link rel="stylesheet" href="css/popup.css">
 
-        <script src="material/angular.min.js"></script>
-        <script src="material/angular-animate.min.js"></script>
-        <script src="material/angular-aria.min.js"></script>
-        <script src="material/angular-messages.min.js"></script>
+		<script src="material/angular.min.js"></script>
+		<script src="material/angular-animate.min.js"></script>
+		<script src="material/angular-aria.min.js"></script>
+		<script src="material/angular-messages.min.js"></script>
 
-        <script src="material/angular-material.min.js"></script>
-        <link rel="stylesheet" href="material/angular-material.min.css">
-    </head>
-    <body ng-app="settings" ng-controller="settings" ng-cloak>
-        <md-content>
-            <md-card>
-                <md-card-content>
-                    <md-checkbox id="option-extension-enabled" aria-label="Enable">Enable the extension</md-checkbox>
-                </md-card-content>
-            </md-card>
+		<script src="material/angular-material.min.js"></script>
+		<link rel="stylesheet" href="material/angular-material.min.css">
+	</head>
+	<body ng-app="settings" ng-controller="settings" ng-cloak>
+		<md-content>
+			<md-card>
+				<md-card-content layout="column" layout-align="start">
+					<md-checkbox ng-init="load()" ng-change="save()" ng-model="extension_enabled" id="extension-enabled" aria-label="Enable">Enable the extension</md-checkbox>
+					
+					<md-input-container>
+						<label>Primary color</label>
+						<md-select ng-init="load()" ng-change="save()" ng-model="primary_color" id="primary-color" class="md-no-underline">
+							<md-option value="red">Red</md-option>
+							<md-option value="pink">Pink</md-option>
+							<md-option value="purple">Purple</md-option>
+							<md-option value="deep-purple">Deep purple</md-option>
+							<md-option value="indigo">Indigo</md-option>
+							<md-option value="blue">Blue</md-option>
+							<md-option value="light-blue">Light blue</md-option>
+							<md-option value="cyan">Cyan</md-option>
+							<md-option value="teal">Teal</md-option>
+							<md-option value="green">Green</md-option>
+							<md-option value="light-green">Light gren</md-option>
+							<md-option value="lime">Lime</md-option>
+							<md-option value="yellow">Yellow</md-option>
+							<md-option value="amber">Amber</md-option>
+							<md-option value="orange">Orange</md-option>
+							<md-option value="deep-orange">Deep orange</md-option>
+							<md-option value="brown">Brown</md-option>
+							<md-option value="grey">Grey</md-option>
+							<md-option value="blue-grey">Blue grey</md-option>
+						</md-select>
+					</md-input-container>
 
-            <md-button id="open-advanced-settings" aria-label="Open Advanced Settings">Advanced</md-button>
-        </md-content>
+					<md-input-container>
+						<label>Secondary (accent) color</label>
+						<md-select ng-init="load()" ng-change="save()" ng-model="secondary_color" id="secondary-color" class="md-no-underline">
+							<md-option value="red">Red</md-option>
+							<md-option value="pink">Pink</md-option>
+							<md-option value="purple">Purple</md-option>
+							<md-option value="deep-purple">Deep purple</md-option>
+							<md-option value="indigo">Indigo</md-option>
+							<md-option value="blue">Blue</md-option>
+							<md-option value="light-blue">Light blue</md-option>
+							<md-option value="cyan">Cyan</md-option>
+							<md-option value="teal">Teal</md-option>
+							<md-option value="green">Green</md-option>
+							<md-option value="light-green">Light gren</md-option>
+							<md-option value="lime">Lime</md-option>
+							<md-option value="yellow">Yellow</md-option>
+							<md-option value="amber">Amber</md-option>
+							<md-option value="orange">Orange</md-option>
+							<md-option value="deep-orange">Deep orange</md-option>
+							<md-option value="brown">Brown</md-option>
+							<md-option value="grey">Grey</md-option>
+							<md-option value="blue-grey">Blue grey</md-option>
+						</md-select>
+					</md-input-container>
+				</md-card-content>
+			</md-card>
 
-        <script src="js/popup.js"></script>
-    </body>
+			<md-button id="open-advanced-settings" aria-label="Open Advanced Settings">Advanced</md-button>
+		</md-content>
+
+		<script src="js/popup.js"></script>
+	</body>
 </html>

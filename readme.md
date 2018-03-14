@@ -11,7 +11,15 @@ This extension was made using:
 * Material Design Icons
 
 ## Changelog
-### 0.1.0 (current):
+### 0.2.0 (current):
+* Forgot to mention, the extension also kinda converts typography
+* Added the ability to change primary and secondary colors in the settings popup (again, still nothing in advanced...)
+* Made code a bit fresher and easier to understand
+#### Known issues:
+* Still, some attributes of the original elements aren't copied through
+* I don't have to remind you the disclamer, do I?
+
+### 0.1.0:
 * The extension now _fully_ supports buttons!
 * Added a master switch in the settings popup (still nothing in the advanced settings...)
 #### Known issues:

@@ -1,6 +1,6 @@
 @import url(main.css);
 
-body > md-content {
+html, body, body > md-content {
     width: 600px !important;
     height: 800px !important;
 }

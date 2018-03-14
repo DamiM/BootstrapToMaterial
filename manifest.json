@@ -39,10 +39,11 @@
 
 	"content_scripts": [
 		{
-			"matches": ["http://*/*", "https://*/*"],
+			"matches": ["<all_urls>"],
 			"css": ["material/material-design-icons.css", "material/angular-material.min.css", "css/inject.css"],
 			"js": ["material/angular.min.js", "material/angular-animate.min.js", "material/angular-aria.min.js", "material/angular-messages.min.js", "material/angular-material.min.js", "js/inject.js"],
-			"run_at": "document_end"
+			"run_at": "document_end",
+			"all_frames": true
 		}
 	],
 

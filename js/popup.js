@@ -1,59 +1,40 @@
-var settingsApp = angular.module('settings', ['ngMaterial']);
-settingsApp.controller('settings', function($scope) {
-	
-});
-
-var checkboxValue = {
-	get: function(checkbox) {
-		if (checkbox.classList.contains('md-checked')) {
-			return true;
-		} else {
-			return false;
-		}
-	},
-
-	set: function(checkbox, newValue) {
-		if (newValue != checkboxValue.get(checkbox)) {
-			if (newValue) {
-				checkbox.classList.add('md-checked');
-			} else {
-				checkbox.classList.remove('md-checked');
-			}
-		}
-	}
+function save(option, value) {
+	chrome.storage.sync.set({
+		[option]: value
+	}, function(options) {
+		
+	});
 }
 
 
-setTimeout(() => {
-	var optionExtensionEnabledSwitch = document.getElementById('option-extension-enabled');
-
-	function saveChanges() {
-		var optionExtensionEnabledValue = checkboxValue.get(optionExtensionEnabledSwitch);
-		
-		chrome.storage.sync.set({
-			optionExtensionEnabled: optionExtensionEnabledValue
-		}, function() {
-			// Notify user
-		});
-	}
+var settingsApp = angular.module('settings', ['ngMaterial']);
+settingsApp.controller('settings', function($scope) {
+	$scope.save = function() {
+		if ($scope.extension_enabled != null) save('optionExtensionEnabled', $scope.extension_enabled);
+		if ($scope.primary_color != null) save('optionPagePrimaryColor', $scope.primary_color);
+		if ($scope.secondary_color != null) save('optionPageSecondaryColor', $scope.secondary_color);
+	};
 	
-	 function loadOptions() {
+	$scope.load = function() {
 		chrome.storage.sync.get({
-			optionExtensionEnabled: true
+			optionExtensionEnabled: true,
+			optionPagePrimaryColor: 'indigo',
+			optionPageSecondaryColor: 'pink'
 		}, function(options) {
-			checkboxValue.set(optionExtensionEnabledSwitch, options.optionExtensionEnabled);
+			$scope.extension_enabled = options.optionExtensionEnabled;
+			$scope.primary_color = options.optionPagePrimaryColor;
+			$scope.secondary_color = options.optionPageSecondaryColor;
 		});
-	}
+	};
+});
 
-	optionExtensionEnabledSwitch.addEventListener('click', saveChanges);
-	
+
+setTimeout(() => {
 	document.getElementById('open-advanced-settings').addEventListener('click', function() {
 		if (chrome.runtime.openOptionsPage) {
 			chrome.runtime.openOptionsPage();
 		} else {
-			window.open(chrome.runtime.getURL('options.html'));
+			window.open('settings.html');
 		}
 	});
-
-	loadOptions();
 }, 0);

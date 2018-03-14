@@ -1,6 +1,6 @@
 @import url(main.css);
 
-body > md-content {
+html, body, body > md-content {
     width: 600px !important;
     height: 400px !important;
 }
@@ -9,4 +9,13 @@ body > md-content {
     position: fixed;
     bottom: 4px;
     right: 4px;
+}
+
+input[type="color"] {
+    display: none;
+}
+
+label {
+    display: block;
+    cursor: inherit;
 }

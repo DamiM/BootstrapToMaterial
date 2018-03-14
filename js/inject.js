@@ -1,9 +1,20 @@
 chrome.storage.sync.get({
-	optionExtensionEnabled: true
+	optionExtensionEnabled: true,
+	optionPagePrimaryColor: 'indigo',
+	optionPageSecondaryColor: 'pink'
 }, function(options) {
 	if (options.optionExtensionEnabled) {
 		
-		document.getElementsByTagName('body')[0].setAttribute('ng-app', 'app');
+		document.getElementsByTagName('body')[0].setAttribute('ng-app', 'page');
+
+		var page = angular.module('page', ['ngMaterial']);
+
+		page.config(function($mdThemingProvider) {
+			$mdThemingProvider.theme('default')
+				.primaryPalette(options.optionPagePrimaryColor)
+				.accentPalette(options.optionPageSecondaryColor);
+		});
+		
 
 		function copyContent(element, newElement) {
 			newElement.innerHTML += element.innerHTML;
@@ -165,8 +176,5 @@ chrome.storage.sync.get({
 
 			text.parentNode.replaceChild(md_body_2, text);
 		});
-
-		angular.module('app', ['ngMaterial']);
-
 	}
 });
