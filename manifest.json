@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Bootstrap To Material",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"description": "This extension will turn any page made with Bootstrap 4 into one that uses Material Design",
 
 	"options_ui": {

@@ -11,7 +11,11 @@ This extension was made using:
 * Material Design Icons
 
 ## Changelog
-### 0.2.1 (current)
+### 0.3.0 (current)
+* Added support for tooltips
+* Made the code cleaner and easier to understand (again)
+
+### 0.2.1
 * Changed the way the framework is loaded: started using programmatic injection instead of content scripts
 * I had actually forgotten to update to 0.2.0 in the extension manifest... <img style="transform: scale(1.5);" height="16px" alt="Man facepalming emoji" src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/google/119/man-facepalming_1f926-200d-2642-fe0f.png">
 * I neither fixed issues, nor added features (however now by disabling the extension from the popup you can actually avoid the scroll prevention)

@@ -3,7 +3,7 @@ chrome.webNavigation.onDOMContentLoaded.addListener(function(details) {
         chrome.storage.sync.get({
             optionExtensionEnabled: true
         }, function(options) {
-            if (options.optionExtensionEnabled && tab.URL !== 'https://www.google.it/_/chrome/newtab?ie=UTF-8') {
+            if (options.optionExtensionEnabled) {
                 chrome.tabs.insertCSS(null, {
                     file: "material/angular-material.min.css",
                     allFrames: true,

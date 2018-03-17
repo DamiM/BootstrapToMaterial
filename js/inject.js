@@ -2,6 +2,10 @@ chrome.storage.sync.get({
 	optionPagePrimaryColor: 'indigo',
 	optionPageSecondaryColor: 'pink'
 }, function(options) {
+	// -------------------- //
+	// Page and theme setup //
+	// -------------------- //
+
 	document.getElementsByTagName('body')[0].setAttribute('ng-app', 'page');
 
 	var page = angular.module('page', ['ngMaterial']);
@@ -11,7 +15,11 @@ chrome.storage.sync.get({
 			.primaryPalette(options.optionPagePrimaryColor)
 			.accentPalette(options.optionPageSecondaryColor);
 	});
-		
+	
+
+	// ------------------------------------------------ //
+	// Creating function to almost duplicate an element //
+	// ------------------------------------------------ //
 
 	function copyContent(element, newElement) {
 		newElement.innerHTML += element.innerHTML;
@@ -20,6 +28,10 @@ chrome.storage.sync.get({
 		if (element.target) newElement.setAttribute('target', element.target);
 		if (element.onclick) newElement.setAttribute('onclick', element.onclick);
 		if (element.type) newElement.setAttribute('type', element.type);
+		if (element.title) newElement.setAttribute('title', element.title);
+
+		if (element.getAttribute('data-toggle')) newElement.setAttribute('data-toggle', element.getAttribute('data-toggle'));
+		if (element.getAttribute('data-placement')) newElement.setAttribute('data-placement', element.getAttribute('data-placement'));
 			
 		newElement.classList += ' ' + element.classList;
 		newElement.id = element.id;
@@ -29,6 +41,19 @@ chrome.storage.sync.get({
 		}
 	}
 
+
+	// -------------------------------------------------------------------------------------------------------- //
+	//  _____                                                _                     _______                   _  //
+	// / ____|                                              (_)                   |__   __|                 | | //
+	// | |        ___    _ __   __   __   ___   _ __   ___   _    ___    _ __        | |      ___     ___   | | //
+	// | |       / _ \  | '_ \  \ \ / /  / _ \ | '__| / __| | |  / _ \  | '_ \       | |     / _ \   / _ \  | | //
+	// | |____  | (_) | | | | |  \ V /  |  __/ | |    \__ \ | | | (_) | | | | |      | |    | (_) | | (_) | | | //
+	//  \_____|  \___/  |_| |_|   \_/    \___| |_|    |___/ |_|  \___/  |_| |_|      |_|     \___/   \___/  |_| //
+	// -------------------------------------------------------------------------------------------------------- //
+
+	// --------//
+	// Buttons //
+	// --------//
 
 	[].forEach.call(document.querySelectorAll('.btn, .btn-primary, .btn-outline-primary, .btn-secondary, .btn-outline-secondary, .btn-success, .btn-outline-success, .btn-danger, .btn-outline-danger, .btn-warning, .btn-outline-warning, .btn-info, .btn-outline-info, .btn-light, .btn-outline-light, .btn-dark, .btn-outline-dark, .btn-link, .btn-outline-link'), function(button) {
 		var md_button = document.createElement('md-button');
@@ -136,6 +161,11 @@ chrome.storage.sync.get({
 		button.parentNode.replaceChild(md_button, button);
 	});
 
+
+	// ---------- //
+	// Typography //
+	// ---------- //
+
 	[].forEach.call(document.querySelectorAll('.display-1'), function(display) {
 		display.classList.add('md-display-4');
 		display.classList.remove('display-1');
@@ -172,5 +202,26 @@ chrome.storage.sync.get({
 		copyContent(text, md_body_2);
 
 		text.parentNode.replaceChild(md_body_2, text);
+	});
+
+
+	// -------- //
+	// Tooltips //
+	// -------- //
+
+	[].forEach.call(document.querySelectorAll('[data-toggle="tooltip"]'), function(element) {
+		element.removeAttribute('data-toggle');
+
+		var md_tooltip = document.createElement('md-tooltip');
+		md_tooltip.innerHTML = element.title;
+
+		element.removeAttribute('title');
+
+		if (element.getAttribute('data-placement')) {
+			element.setAttribute('md-direction', element.getAttribute('data-placement'));
+			element.removeAttribute('data-placement');
+		}
+
+		element.appendChild(md_tooltip);
 	});
 });
