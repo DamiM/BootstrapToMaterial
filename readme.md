@@ -2,7 +2,7 @@
 ## Overview
 This extension will turn any page made with Bootstrap 4 into one that uses Material Design.
 
-**Disclaimer:** this extension is still in really early development, so I would consider only keeping it enabled for testing, as it may (and it will) cause unexpected behaviors on websites. For example, it prevents scrolling in [Material Design guidelines](https://material.io/guidelines/) itself...
+**Disclaimer:** this extension is still in really early development, so I would consider only keeping it enabled for testing, as it may (and it will) cause unexpected behaviors on websites.
 
 ## Credits
 This extension was made using:
@@ -11,7 +11,12 @@ This extension was made using:
 * Material Design Icons
 
 ## Changelog
-### 0.3.0 (current)
+### 0.4.0 (current)
+* Added support for cards, except that custom border doesn't work
+* Updated AngularJS Material to version 1.1.8
+* Finally fixed the bug for which scrolling in some pages wouldn't work, and the background color would only last after a certain point!
+
+### 0.3.0
 * Added support for tooltips
 * Made the code cleaner and easier to understand (again)
 

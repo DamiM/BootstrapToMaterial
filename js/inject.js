@@ -32,9 +32,14 @@ chrome.storage.sync.get({
 
 		if (element.getAttribute('data-toggle')) newElement.setAttribute('data-toggle', element.getAttribute('data-toggle'));
 		if (element.getAttribute('data-placement')) newElement.setAttribute('data-placement', element.getAttribute('data-placement'));
-			
-		newElement.classList += ' ' + element.classList;
-		newElement.id = element.id;
+		if (element.getAttribute('data-target')) newElement.setAttribute('data-target', element.getAttribute('data-target'));
+		if (element.getAttribute('aria-controls')) newElement.setAttribute('aria-controls', element.getAttribute('aria-controls'));
+		if (element.getAttribute('role')) newElement.setAttribute('role', element.getAttribute('role'));
+		
+		if (element.getAttribute('style')) newElement.setAttribute('style', element.getAttribute('style'));
+		
+		if (element.getAttribute('class')) newElement.setAttribute('class', newElement.getAttribute('class') + ' ' + element.getAttribute('class'));
+		if (element.getAttribute('id')) newElement.setAttribute('id', newElement.getAttribute('id') + element.getAttribute('id'));
 
 		if (newElement.innerText === '') {
 			newElement.innerText = element.value;
@@ -121,6 +126,7 @@ chrome.storage.sync.get({
 		if (md_button.classList.contains('btn-dark')) md_button.classList.remove('btn-dark');
 		if (md_button.classList.contains('btn-link')) md_button.classList.remove('btn-link');
 
+		if (md_button.classList.contains('btn-outline')) md_button.classList.remove('btn-outline');
 		if (md_button.classList.contains('btn-outline-primary')) md_button.classList.remove('btn-outline-primary');
 		if (md_button.classList.contains('btn-outline-secondary')) md_button.classList.remove('btn-outline-secondary');
 		if (md_button.classList.contains('btn-outline-success')) md_button.classList.remove('btn-outline-success');
@@ -150,7 +156,7 @@ chrome.storage.sync.get({
 			md_button.replaceChild(md_button_icon, md_button.firstChild);
 		}
 
-		if (button.disabled || button.classList.contains('disabled')) {
+		if (button.disabled || button.classList.contains('disabled') || button.getAttribute('aria-disabled') === 'true') {
 			md_button.setAttribute('ng-disabled', 'true');
 		}
 
@@ -223,5 +229,116 @@ chrome.storage.sync.get({
 		}
 
 		element.appendChild(md_tooltip);
+	});
+
+
+	// ----- //
+	// Cards //
+	// ----- //
+
+	// Actual card
+
+	[].forEach.call(document.querySelectorAll('.card'), function(card) {
+		card.classList.remove('card');
+		var md_card = document.createElement('md-card');
+
+		copyContent(card, md_card);
+
+		card.parentNode.replaceChild(md_card, card);
+	});
+
+	// Card image
+
+	[].forEach.call(document.querySelectorAll('.card > card-img-top, .card > card-img-bottom'), function(card_image) {
+		if (card_image.classList.contains('card-img-top')) card_image.classList.remove('card-img-top');
+		if (card_image.classList.contains('card-img-bottom')) card_image.classList.remove('card-img-bottom');
+	});
+
+	// Card header
+
+	[].forEach.call(document.querySelectorAll('.card-header'), function(card_header) {
+		card_header.classList.remove('card-header');
+		var md_card_header = document.createElement('md-card-header');
+
+		copyContent(card_header, md_card_header);
+
+		card_header.parentNode.replaceChild(md_card_header, card_header);
+	});
+
+	// Card title
+
+	[].forEach.call(document.querySelectorAll('.card-title'), function(card_title) {
+		var hasSubitle = card_title.parentNode.querySelectorAll('.card-subtitle')[0];
+
+		card_title.classList.remove('card-title');
+		var md_card_title = document.createElement('md-card-title');
+		var md_card_title_text = document.createElement('md-card-title-text');
+
+		var md_card_title_text_text = document.createElement('span');
+		md_card_title_text_text.classList.add('md-headline');
+		md_card_title_text.appendChild(md_card_title_text_text);
+
+		md_card_title.appendChild(md_card_title_text);
+
+		copyContent(card_title, md_card_title_text_text);
+
+		card_title.parentNode.parentNode.insertBefore(md_card_title, card_title.parentNode);
+		card_title.parentNode.removeChild(card_title);
+	});
+
+	// Card subtitle
+
+	[].forEach.call(document.querySelectorAll('.card-subtitle'), function(card_subtitle) {
+		var hasTitle = card_subtitle.parentNode.parentNode.getElementsByTagName('md-card-title')[0];
+
+		card_subtitle.classList.remove('card-subtitle');
+
+		if (!hasTitle) {
+			var md_card_title = document.createElement('md-card-title');
+			var md_card_title_text = document.createElement('md-card-title-text');
+		} else {
+			var md_card_title_text = card_subtitle.parentNode.parentNode.getElementsByTagName('md-card-title')[0].getElementsByTagName('md-card-title-text')[0];
+		}
+
+		var md_card_title_text_text = document.createElement('span');
+		md_card_title_text_text.classList.add('md-subhead');
+		md_card_title_text.appendChild(md_card_title_text_text);
+
+		copyContent(card_subtitle, md_card_title_text_text);
+
+		if (!hasTitle) {
+			card_title.parentNode.parentNode.insertBefore(md_card_title, card_title.parentNode);
+			md_card_title.appendChild(md_card_title_text);
+		}
+
+		card_subtitle.parentNode.removeChild(card_subtitle);
+	});
+
+	// Card body
+
+	[].forEach.call(document.querySelectorAll('.card-body'), function(card_body) {
+		card_body.classList.remove('card-body');
+		var md_card_content = document.createElement('md-card-content');
+
+		copyContent(card_body, md_card_content);
+
+		card_body.parentNode.replaceChild(md_card_content, card_body);
+	});
+
+	// Card text
+
+	[].forEach.call(document.querySelectorAll('.card-text'), function(card_text) {
+		card_text.classList.remove('card-text');
+	});
+
+	// Card footer
+
+	[].forEach.call(document.querySelectorAll('.card-footer'), function(card_footer) {
+		card_footer.classList.remove('card-footer');
+		var md_card_footer = document.createElement('md-card-footer');
+
+		copyContent(card_footer, md_card_footer);
+
+		card_footer.parentNode.replaceChild(md_card_footer, card_footer);
 	});
 });
