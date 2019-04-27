@@ -2,11 +2,11 @@
 ## Overview
 This extension will turn any page made with Bootstrap 4 into one that uses Material Design.
 
-**Disclaimer:** this extension is still in really early development, so I would consider only keeping it enabled for testing, as it may (and it will) cause unexpected behaviors on websites.
+**Disclaimer:** this extension is still in really early development, so I would consider only keeping it enabled for testing, as it may (and will) cause unexpected behaviors on websites.
 
 ## Credits
 This extension was made using:
-* AngularJS (Angular ≤ 1.6.9)
+* AngularJS (Angular v1.x)
 * AngularJS Material
 * Material Design Icons
 
